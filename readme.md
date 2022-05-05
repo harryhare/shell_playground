@@ -18,5 +18,16 @@ set
 type  用来查看命令本身的类型
 which
 
+##
+子bash 不继承环境变量，所以 source 和 直接运行才有区别
+source 是在当前 bash 中运行，所以当前bash变量不用export
+而直接运行是 在子bash 中运行，所以当前的bash 变量需要export 才能被读到
+
+
+##
+alias 查看所有别名
+declare -F  查看所有函数名
+declare -f 查看完整函数
+set 查看所有变量和函数
 
  

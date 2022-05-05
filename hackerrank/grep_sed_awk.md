@@ -10,7 +10,7 @@ grep -iw 'the'
 
 ### grep 3
 grep -iv '\bthat\b'
-grep -i2v 'that'
+grep -iwv 'that'
 
 
 ### grep 4
