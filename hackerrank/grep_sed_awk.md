@@ -20,6 +20,7 @@ grep -Eiw '(the|that|then|those)'
 ### grep 5
 grep '\([0-9]\) *\1'
 grep -E '([0-9]) *\1' # 本地测试正确
+也可也试下 grep -P , perl 的正则
 
 ### sed 1
 sed 's/the /this /'
@@ -38,6 +39,10 @@ sed -E 's/(\d{4}) (\d{4}) (\d{4}) (\d{4})/\4 \3 \2 \1/g'
 
 
 ### awk 1
+NR: Number of Record
+NF: Number of Field
+FNR: File Number of Record
+
 awk '{if (NF < 4){print "Not all scores are available for "$1}}'
 
 ### awk2

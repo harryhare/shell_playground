@@ -26,6 +26,7 @@ source 是在当前 bash 中运行，所以当前bash变量不用export
 
 ##
 alias 查看所有别名
+delare -p 所有变量
 declare -F  查看所有函数名
 declare -f 查看完整函数
 set 查看所有变量和函数

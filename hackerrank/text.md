@@ -153,6 +153,8 @@ uniq -ic | cut -c7-
 ```bash
 uniq -u
 ```
+对应的还有只保留多次的
+uniq -d
 
 ### 29 
 
