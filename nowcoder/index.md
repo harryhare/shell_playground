@@ -34,8 +34,53 @@ awk '{
     for(line in rows){print rows[line]}
 }'
 
+### SHELL12 打印每一行出现的数字个数
+-F "" 和在BEGIN 中设置 FS="" 一样
+
+awk -F "[1-5]" '
+BEGIN{
+    sum=0
+} 
+{    
+    print "line"NR" number:"(NF-1) ;
+    sum+=(NF-1)
+}
+END{
+    print "sum is "sum 
+}
+'
+
+awk -F "" 'BEGIN{count=0; sum=0}
+{
+    count=0;
+    for(i=1;i<=NF;++i){
+        if($i==1 || $i==2 || $i==3 || $i==4 || $i==5){
+            count+=1;
+        }
+    }
+     sum += count;
+     printf("line%d number:%d\n",NR,count);
+}
+END{
+    printf("sum is %d\n",sum);
+}'
 
 
+
+awk 'BEGIN{FS="";count=0; sum=0}
+{
+    count=0;
+    for(i=1;i<=NF;++i){
+        if($i==1 || $i==2 || $i==3 || $i==4 || $i==5){
+            count+=1;
+        }
+    }
+     sum += count;
+     printf("line%d number:%d\n",NR,count);
+}
+END{
+    printf("sum is %d\n",sum);
+}'
 
 ### SHELL13 去掉所有包含this的句子
 grep -ivw "this"
@@ -56,8 +101,25 @@ awk '{if(NR!=1)sum+=$0}END{printf("%.3f",sum/(NR-1))}'
 grep -iv b
 
 ### SHELL16 判断输入的是否为IP地址
-太麻烦了
+awk -F "." '{
+    str="yes";
+    if(NF!=4){
+        str="error";
+    }else{
+        for(i=1;i<=4;i++){
+            if($i>=256){
+                str="no";
+                break;
+            }
+        }
+    }
+    print(str);
+}'
 
+### SHELL17 将字段逆序输出文件的每行
+awk -F ":" '{line=$1;for(i=2;i<=NF;i++){line=$i":"line};print(line)}'
+
+awk 'BEGIN{FS=OFS=":"}{for(i=NF;i>1;i--){printf $i":"}print $1}'
 
 
 ### SHELL18 域名进行计数排序处理
@@ -72,6 +134,12 @@ echo '* * * * *'
 
 ### SHELL20 打印只有一个数字的行
 grep -E '^[^0-9]*[0-9][^0-9]*$'
+
+### SHELL21 格式化输出
+printf "%'d\n"  `cat`
+
+这个没看懂
+sed -E ':a; s/([[:digit:]])([[:digit:]]{3})\>/\1,\2/; ta'
 
 ### SHELL22
 awk -F ":" '{
